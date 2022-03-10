@@ -1,10 +1,11 @@
 import React from 'react'
 import {SetarTema} from '../../hooks/useSetarTema'
+import { HeaderDiv } from './Style'
 export const Header: React.FC = ()=>{
   return (
-    <header>
+    <HeaderDiv>
       <h1>Party Time</h1>
       <SetarTema/>
-    </header>
+    </HeaderDiv>
   )
 }
