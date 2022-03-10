@@ -1,7 +1,9 @@
+import { FooterDiv } from "./Style"
+
 export const Footer = ()=>{
   return (
-    <footer>
+    <FooterDiv>
       &copy; Party Time - Feito por Victor Monteiro. Nenhum direito reservado.
-    </footer>
+    </FooterDiv>
   )
 }

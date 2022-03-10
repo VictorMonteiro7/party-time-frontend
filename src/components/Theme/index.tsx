@@ -1,29 +1,21 @@
-import React,{useState, useEffect} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {ThemeProvider} from 'styled-components'
 import {DarkTheme, LightTheme} from './themes'
 import GlobalStyle from './Style'
+import { Context } from '../../context'
 export const ThemeSelect: React.FC = ({children})=>{
   const localLight = localStorage.getItem('isLight');
-  const [isLight, setIsLight] = useState(false)
-
+  const [initialTheme, setInitialTheme] = useState(localLight === 'true' ? true : false);
+  const {state} = useContext(Context)
   useEffect(()=>{
-    if(localLight === null){
-      localStorage.setItem('isLight', 'true')
-      setIsLight(true)
-      return;
-    }
-  },[localLight])
-  
-  const setarTema = (tema: boolean)=>{
-    setIsLight(!(tema))
-    localStorage.setItem('isLight', tema.toString())
-  }
+    setInitialTheme(state.themeDark)
+    localStorage.setItem('isLight',state.themeDark.toString())
+  },[state.themeDark])
 
   return (
-    <ThemeProvider theme={isLight ? LightTheme : DarkTheme}>
+    <ThemeProvider theme={initialTheme ? LightTheme : DarkTheme}>
       <GlobalStyle/>
         {children}
-        <button onClick={()=>setarTema(isLight)}>Setar Darktheme</button>
     </ThemeProvider>
   )
 }
