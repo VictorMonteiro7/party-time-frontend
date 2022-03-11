@@ -1,11 +1,29 @@
-import axios from "axios";
-const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-});
-
+const BASE_URL = process.env.REACT_APP_API_URL;
 export const Api = {
-  get: (endpoint: string) => instance.get(endpoint),
-  post: (endpoint: string, data: any) => instance.post(endpoint, data),
-  put: (endpoint: string, data: any) => instance.put(endpoint, data),
-  delete: (endpoint: string) => instance.delete(endpoint),
+  get: async (endpoint: string, token?: string) => {
+    const res = await fetch(`${BASE_URL}${endpoint}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+    });
+    const json = await res.json();
+    return { res, json };
+  },
+  post: async (endpoint: string, data: any) => {
+    const r = await fetch(`${BASE_URL}${endpoint}`, {
+      method: "POST",
+      headers: data.headers,
+      body: data.body,
+    });
+    const json = await r.json();
+    return {
+      r,
+      json,
+    };
+  },
+  // put: async (endpoint: string, data: any) =>
+  //   await instance.put(endpoint, data),
+  // delete: async (endpoint: string) => await instance.delete(endpoint),
 };

@@ -1,46 +1,52 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {Api} from '../../api'
-import {PartyTypes} from '../../types'
+import { Context } from '../../context';
+import {PartyTypes, PartyUserTypes} from '../../types'
 import { Imagem } from '../Imagem';
 import { MainGrid } from './Style';
 
 export const HomePage = ()=>{
-  const [dataApi, setDataApi] = useState<PartyTypes[]>([]);
-  const [total, setTotal] = useState(0);
+  let token: string = localStorage.token;
+  const {state} = useContext(Context)
+  const [dataApi, setDataApi] = useState<PartyUserTypes>() 
+  let parties: PartyTypes[] = [];
+  let endpoint = state.isLogged ? '/user/parties' : '/parties';
+
   useEffect(()=>{
     apiGet();
-    (async function teste(){
-      const {data} = await Api.get('/parties');
-      return setTotal(data.length);
-    })()
-  },[])
-
-  useEffect(()=>{
-    if(total !== 0 && total !== dataApi.length){
-      apiGet();
-      console.log('mudou')
-    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[total])
-
-  setInterval(()=>{
-    (async function teste(){
-      const {data} = await Api.get('/parties');
-      return setTotal(data.length);
-    })()
-  },(1000) * 30)
-
+  },[state.isLogged])
   
   async function apiGet(){
-    const {data} = await Api.get('/parties');
-    if(data.message) return null;
-    setDataApi(data)
+    const {json} = await Api.get(endpoint, token && token);
+    if(json.message) return null;
+    if(state.isLogged){
+      setDataApi(json)
+    } else {
+      setDataApi({
+        parties: json
+      })
+    }
   }
 
+
+  (function adicionaFesta(){
+    if(dataApi !== undefined){
+      dataApi.parties.forEach((party)=>{
+        parties.push(party)
+      })
+      if(dataApi.privateParties){
+        dataApi.privateParties.forEach((party)=>{
+          parties.push(party)
+        })
+      }
+    }
+  })()
+  
   return (
-    <MainGrid>
-      {dataApi.length > 0 && <>
-        {dataApi.map((item)=>{
+    <MainGrid className='leftIn'>
+      {parties.length > 0 && <>
+        {parties.map((item)=>{
           let date = new Date(item.date).toLocaleDateString('pt-BR');
           return (
             <div key={item._id}>
@@ -51,7 +57,8 @@ export const HomePage = ()=>{
             </div>
           )
         })}
-      </>}
+      </>} 
+     {parties.length === 0 && <h1>Nenhum evento cadastrado</h1>}
     </MainGrid>
   )
 }

@@ -29,7 +29,7 @@ export default createGlobalStyle`
     margin: 0 auto;
     min-height: calc(100vh - 145px);
   }
-  p,a,li{
+  p,a,li,button{
     color: var(--text);
   }
   a{
@@ -47,6 +47,20 @@ export default createGlobalStyle`
       to {
         background-position: -200%;
       }
+    }
+  }
+
+  .leftIn{
+    animation: leftIn 0.5s forwards;
+  }
+  @keyframes leftIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100%{
+      opacity: 1;
+      transform: translateX(0)
     }
   }
 `;
