@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ErrorMsg } from "../../components/Error/Style";
 import { Form } from "../../components/Form";
 
 export const RegisterForm = ()=>{
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const navigate = useNavigate();
+  const [error, setError] = useState('');
   const handlePassChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value)
   }
@@ -17,14 +20,22 @@ export const RegisterForm = ()=>{
   }
 
   function handleRegister(props: any){
+    if(props.error){
+      setError(props.error)
+      let tiraError = setTimeout(()=>{
+        setError('')
+        clearTimeout(tiraError)
+      }, 3000)
+    }
     if(props.json){
-      console.log(props.json)
+      navigate('/user')
     }
   }
 //
   return (
     <div className="leftIn" style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>    
     <h1>Faça seu cadastro</h1>
+    {error && <ErrorMsg className="rightIn">{error}</ErrorMsg>}
         <Form mth="POST" end="/register" data={{body: {name, email, password}}} handleFuncao={handleRegister}>
         <label htmlFor="user">
             <p>Usuário</p>

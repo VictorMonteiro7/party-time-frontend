@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ErrorMsg } from "../../components/Error/Style";
 import { Form } from "../../components/Form";
 
 export const LoginForm = ()=>{
@@ -7,6 +8,7 @@ export const LoginForm = ()=>{
   const [password, setPassword] = useState('');
   const navigate = useNavigate()
   let token = localStorage.getItem('token');
+  const [error, setError] = useState('');
   const handlePassChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value)
   }
@@ -22,13 +24,22 @@ export const LoginForm = ()=>{
   },[])
 
   function handleRegister(props: any){
+    if(props.error){
+      setError(props.error)
+      let tiraError = setTimeout(()=>{
+        setError('')
+        clearTimeout(tiraError)
+      }, 3000)
+    }
     if(props.token){
       navigate('/user')
     }
   }
   return (
+    <>
     <div className="leftIn" style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>    
     <h1>Faça Login</h1>
+    {error && <ErrorMsg className="rightIn">{error}</ErrorMsg>}
         <Form handleFuncao={handleRegister} mth="POST" end="/login" data={{body: {email, password}}}>
           <label htmlFor="user">
             <p>Usuário</p>
@@ -45,5 +56,6 @@ export const LoginForm = ()=>{
         <br/>
         <Link to="./register">Registrar</Link>
     </div>
+    </>
   )
 }

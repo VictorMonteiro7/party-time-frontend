@@ -39,7 +39,7 @@ export const Form = (props: FormType) => {
         }
       })
     }
-    if(resposta.r.status === 400) return resposta.json;
+    if(resposta.r.status === 400) return props.handleFuncao && props.handleFuncao(resposta.json);
     localStorage.setItem('token', `Bearer ${resposta.json.token}`);
     dispatch({
       type: 'LOGIN',
