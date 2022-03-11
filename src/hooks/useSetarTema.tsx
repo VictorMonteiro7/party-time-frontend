@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Context } from "../context";
+import { ThemeButton } from "./Style";
 
 export const SetarTema = () => {
   const {state, dispatch} = useContext(Context);
@@ -10,6 +11,6 @@ export const SetarTema = () => {
    localStorage.setItem('isLight', state.themeDark.toString());
   }
   return (
-    <button onClick={setarTema}>Mudar Tema</button>
+    <ThemeButton onClick={setarTema} isLight={state.themeDark}></ThemeButton>
   )
 }

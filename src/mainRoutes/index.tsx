@@ -6,6 +6,7 @@ export const MainRoutes = ()=>{
     {
       path: "/",
       element: <Home />
-    }
+    },
+    {path: '*', element: <div>404</div>}
   ]);
 }

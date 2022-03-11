@@ -2,6 +2,8 @@ import { HomePage } from "../components/homePage";
 
 export const Home = ()=>{
   return (
-      <HomePage />
+    <div className="content">
+       <HomePage />
+    </div>     
   );
 }
