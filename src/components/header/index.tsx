@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {SetarTema} from '../../hooks/useSetarTema'
 import { HeaderDiv, NavHeader } from './Style'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useNavigate} from 'react-router-dom'
+import { Context } from '../../context'
 export const Header: React.FC = ()=>{
+const {state, dispatch} = useContext(Context)
+const navigate = useNavigate();
   return (
     <HeaderDiv>
       <NavHeader>
@@ -11,11 +14,23 @@ export const Header: React.FC = ()=>{
           <NavLink to="/" className={({isActive})=> isActive ? 'ativo' : ''}>Home</NavLink>
           </li>
           <li>
-            <NavLink to="/login" className={({isActive})=> isActive ? 'ativo' : ''}>Fazer login</NavLink>
+            {!state.isLogged ? 
+          <NavLink to="/login" className={({isActive})=> isActive ? 'ativo' : ''}>Login / Cadastro</NavLink> 
+            :             
+            <NavLink to="/user" className={({isActive})=> isActive ? 'ativo' : ''}>Usuário</NavLink>}
           </li>
-          <li>
-            <NavLink to="/cadastro" className={({isActive})=> isActive ? 'ativo' : ''}>Cadastro</NavLink>
-          </li>
+          {state.isLogged && 
+            <li>          
+              <NavLink to='#'  onClick={(e)=>{
+                e.preventDefault();
+                dispatch({
+                  type: 'LOGOUT'
+                });
+                localStorage.removeItem('token');
+                navigate('/')
+              }}>Sair</NavLink>
+            </li>
+          }
         </ul>
         <SetarTema />
       </NavHeader>

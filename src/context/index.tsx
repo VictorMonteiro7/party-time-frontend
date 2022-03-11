@@ -3,11 +3,15 @@ import {
   ThemeDark,
   ThemeDarkType,
   initialThemeDark,
+  InitialLoggedType,
+  initialIsLogged,
+  isLogged,
 } from "../reducers/mainReducers";
 import { ReducerType } from "../types/reducerType";
 
 type initialTypes = {
   themeDark: ThemeDarkType;
+  isLogged: InitialLoggedType;
 };
 
 type contextType = {
@@ -17,6 +21,7 @@ type contextType = {
 
 const initialState: initialTypes = {
   themeDark: initialThemeDark,
+  isLogged: initialIsLogged,
 };
 
 export const Context = createContext<contextType>({
@@ -26,6 +31,7 @@ export const Context = createContext<contextType>({
 
 const mainReducer = (state: initialTypes, action: ReducerType) => ({
   themeDark: ThemeDark(state.themeDark, action),
+  isLogged: isLogged(state.isLogged, action),
 });
 
 export const ContextProvider: React.FC = ({ children }) => {

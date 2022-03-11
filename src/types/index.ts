@@ -7,3 +7,8 @@ export type PartyTypes = {
   userId: string;
   photos: string[];
 };
+
+export type PartyUserTypes = {
+  parties: PartyTypes[];
+  privateParties?: PartyTypes[];
+};
