@@ -15,6 +15,7 @@ export default createGlobalStyle`
     --black: #0e0e0e;
     --purple: #83a;
     --white: #fefefe;
+    --green: #37e218;
     --max-width: 67.5rem;
     --Montserrat: 'Montserrat', sans-serif;
     --Roboto: 'Roboto', sans-serif;

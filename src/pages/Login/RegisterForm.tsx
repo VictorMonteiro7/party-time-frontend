@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ErrorMsg } from "../../components/Error/Style";
 import { Form } from "../../components/Form";
+import { Context } from "../../context";
 
 export const RegisterForm = ()=>{
   const [email, setEmail] = useState('');
@@ -9,6 +10,7 @@ export const RegisterForm = ()=>{
   const [name, setName] = useState('');
   const navigate = useNavigate();
   const [error, setError] = useState('');
+  const {dispatch} = useContext(Context);
   const handlePassChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value)
   }
@@ -27,11 +29,13 @@ export const RegisterForm = ()=>{
         clearTimeout(tiraError)
       }, 3000)
     }
-    if(props.json){
+    if(props.token){
+      dispatch({
+        type: 'LOGIN',
+      })
       navigate('/user')
     }
   }
-//
   return (
     <div className="leftIn" style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>    
     <h1>Faça seu cadastro</h1>

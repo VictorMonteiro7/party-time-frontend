@@ -13,3 +13,8 @@ export const ErrorMsg = styled.button`
   border-radius: 5px;
   pointer-select: none;
 `;
+
+export const SuccessMsg = styled(ErrorMsg)`
+  background: var(--green);
+  color: var(--black);
+`;

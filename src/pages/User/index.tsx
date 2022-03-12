@@ -1,8 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Context } from "../../context";
 import { useConfereUser } from "../../hooks/useConfereUser";
-
+import { PartyTypes } from "../../types";
+import { IconsContainer, UserContainer } from "./Style";
+import {ReactComponent as Upload} from '../../img/upload.svg';
+import {ReactComponent as Update} from '../../img/update.svg';
+import {ReactComponent as Feed} from '../../img/feed.svg';
+import { UserRoutes } from "./UserRoutes";
 
 type UserType = {
   name: string;
@@ -14,8 +19,8 @@ export const User = ()=>{
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const {confereUser} = useConfereUser();
-  const [dados, setDados] = useState<UserType>({name: '', email: '', _id: ''})
-  const {dispatch} = useContext(Context)
+  const [dados, setDados] = useState<UserType>({name: '', email: '', _id: ''});
+  const {dispatch} = useContext(Context);
   useEffect(()=>{
     if(!token){
       navigate('/login')
@@ -41,11 +46,29 @@ export const User = ()=>{
     })()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
+
+
   return (
-    <div>
+    <UserContainer className="content ">
       {dados &&       
-        <h1>{dados.name}</h1>
+        <h1>Seja bem vindo, {dados.name}!</h1>        
       }
-    </div>
+      <h3>O que vamos fazer agora?</h3>
+      <IconsContainer>
+        <NavLink to="upload">
+          <p>Upload</p>
+          <Upload />
+        </NavLink>
+        <NavLink to="update">
+          <p>Update</p>
+          <Update/>
+        </NavLink>
+        <NavLink to="feed">
+          <p>Feed</p>
+          <Feed/>
+        </NavLink>
+      </IconsContainer>
+      <UserRoutes/>
+    </UserContainer>
   )
 }
