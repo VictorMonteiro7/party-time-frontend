@@ -5,6 +5,7 @@ import { ErrorMsg, SuccessMsg } from "../../components/Error/Style";
 import { UpdateContainer } from "./Style";
 import validator from "validator";
 import { Context } from "../../context";
+import { useConfereSenha } from "../../hooks/useConfereSenha";
 
 export const Update = () => {
   const [name, setName] = useState<string>("");
@@ -14,6 +15,7 @@ export const Update = () => {
   const [success, setSuccess] = useState("");
   const token = localStorage.getItem("token");
   const { dispatch } = useContext(Context);
+  const conferencia = useConfereSenha(newPass);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -111,6 +113,22 @@ export const Update = () => {
             placeholder="Escreva a nova senha"
           />
         </label>
+        <div style={{ alignSelf: "flex-start" }}>
+          {conferencia && (
+            <>
+              {typeof conferencia === "object" && (
+                <>
+                  <h3>Sua nova senha precisa ter: </h3>
+                  {conferencia.maiusculo && <p>Letra Maiúscula</p>}
+                  {conferencia.minusculo && <p>Letra Minúscula</p>}
+                  {conferencia.numero && <p>Número</p>}
+                  {conferencia.caracteres && <p>Caracteres especiais</p>}
+                  {newPass.length < 8 && <p>8 caracteres</p>}
+                </>
+              )}
+            </>
+          )}
+        </div>
         <label htmlFor="old-pass">
           <p>Senha Atual</p>
           <input
