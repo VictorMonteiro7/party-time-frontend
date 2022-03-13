@@ -42,7 +42,14 @@ export const Upload = () => {
         },
         body: formData,
       });
-      if (json.error) return setError(json.error);
+      if (json.error) {
+        setError(json.error);
+        let timer = setTimeout(() => {
+          setError("");
+          clearTimeout(timer);
+        }, 3000);
+        return;
+      }
       setTitulo("");
       setDescricao("");
       setData("");
