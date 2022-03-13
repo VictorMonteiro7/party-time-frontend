@@ -121,3 +121,12 @@ export const UploadContainer = styled.div`
     }
   }
 `;
+
+export const UpdateContainer = styled(UploadContainer)`
+  & form {
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+`;

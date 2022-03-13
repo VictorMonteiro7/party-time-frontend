@@ -76,7 +76,7 @@ export const User = () => {
           <Update />
         </NavLink>
         <NavLink to="./">
-          <p>Feed</p>
+          <p>Feed Pessoal</p>
           <Feed />
         </NavLink>
       </IconsContainer>
