@@ -4,55 +4,61 @@ import { Context } from "../../context";
 import { useConfereUser } from "../../hooks/useConfereUser";
 import { PartyTypes } from "../../types";
 import { IconsContainer, UserContainer } from "./Style";
-import {ReactComponent as Upload} from '../../img/upload.svg';
-import {ReactComponent as Update} from '../../img/update.svg';
-import {ReactComponent as Feed} from '../../img/feed.svg';
+import { ReactComponent as Upload } from "../../img/upload.svg";
+import { ReactComponent as Update } from "../../img/update.svg";
+import { ReactComponent as Feed } from "../../img/feed.svg";
 import { UserRoutes } from "./UserRoutes";
 
 type UserType = {
   name: string;
   email: string;
   _id: string;
-}
+};
 
-export const User = ()=>{
-  const token = localStorage.getItem('token');
+export const User = () => {
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
-  const {confereUser} = useConfereUser();
-  const [dados, setDados] = useState<UserType>({name: '', email: '', _id: ''});
-  const {dispatch} = useContext(Context);
-  useEffect(()=>{
-    if(!token){
-      navigate('/login')
+  const { confereUser } = useConfereUser();
+  const [dados, setDados] = useState<UserType>({
+    name: "",
+    email: "",
+    _id: "",
+  });
+  const { dispatch } = useContext(Context);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
     }
-    (async function conferencia(){
-      try{
+    (async function conferencia() {
+      setIsLoading(true);
+      try {
         const res = await confereUser();
-        if (res === null){
-          localStorage.removeItem('token');
+        if (res === null) {
+          localStorage.removeItem("token");
           dispatch({
-            type: 'LOGOUT'
-          })
-          navigate('/')
+            type: "LOGOUT",
+          });
+          navigate("/");
         }
         setDados(res);
-      } catch(err){
-        localStorage.removeItem('token');
+      } catch (err) {
+        localStorage.removeItem("token");
         dispatch({
-          type: 'LOGOUT'
-        })
-        navigate('/')
+          type: "LOGOUT",
+        });
+        navigate("/");
+      } finally {
+        setIsLoading(false);
       }
-    })()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-
+  if (isLoading) return <h1 className="leftIn">Carregando...</h1>;
   return (
     <UserContainer className="content ">
-      {dados &&       
-        <h1>Seja bem vindo, {dados.name}!</h1>        
-      }
+      {dados && <h1>Seja bem vindo, {dados.name}!</h1>}
       <h3>O que vamos fazer agora?</h3>
       <IconsContainer>
         <NavLink to="upload">
@@ -61,14 +67,14 @@ export const User = ()=>{
         </NavLink>
         <NavLink to="update">
           <p>Update</p>
-          <Update/>
+          <Update />
         </NavLink>
         <NavLink to="feed">
           <p>Feed</p>
-          <Feed/>
+          <Feed />
         </NavLink>
       </IconsContainer>
-      <UserRoutes/>
+      <UserRoutes />
     </UserContainer>
-  )
-}
+  );
+};

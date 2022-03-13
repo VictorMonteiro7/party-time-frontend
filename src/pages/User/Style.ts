@@ -11,9 +11,16 @@ export const IconsContainer = styled.div`
   justify-content: space-evenly;
   width: 100%;
   margin-top: 3rem;
+  @media (max-width: 768px) {
+    gap: 5px;
+  }
   & > a > svg {
     width: 150px;
     height: 150px;
+    @media (max-width: 768px) {
+      width: 100px;
+      height: 100px;
+    }
   }
   & > a > p {
     text-align: center;
@@ -35,6 +42,9 @@ export const FeedGrid = styled.div`
     padding: 20px;
     border: 1px solid;
   }
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const UploadContainer = styled.div`
@@ -42,6 +52,10 @@ export const UploadContainer = styled.div`
   width: 100%;
   position: relative;
   align-items: center;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
   & > div {
     display: flex;
     flex-direction: column;
@@ -49,6 +63,9 @@ export const UploadContainer = styled.div`
     flex: 1;
     place-self: flex-start;
     padding-top: 3rem;
+    @media (max-width: 768px) {
+      place-self: center;
+    }
     & img {
       margin-top: 2rem;
       display: block;
@@ -56,6 +73,12 @@ export const UploadContainer = styled.div`
     }
   }
   & > form {
+    @media (max-width: 768px) {
+      label[for="privacy"] {
+        border: 1px solid;
+        padding: 15px 10px;
+      }
+    }
     display: flex;
     flex-direction: column;
     align-items: center;

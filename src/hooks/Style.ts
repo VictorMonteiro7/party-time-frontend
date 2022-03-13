@@ -15,6 +15,10 @@ export const ThemeButton = styled.button<Props>`
   background: ${({ isLight }) => (isLight ? "var(--black)" : "var(--white)")};
   color: var(--text);
   cursor: pointer;
+  @media (max-width: 768px) {
+    right: unset;
+    left: 5px;
+  }
   &:after {
     content: "";
     border: 1px solid var(--bg);

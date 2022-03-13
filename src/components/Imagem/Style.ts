@@ -10,4 +10,8 @@ export const ImagemContainer = styled.img<ImgProps>`
   object-fit: cover;
   width: ${(props) => (props.wdt ? props.wdt : "300px")};
   height: ${(props) => (props.hgt ? props.hgt : "300px")};
+  @media (max-width: 768px) {
+    width: 125px;
+    height: 125px;
+  }
 `;
