@@ -14,17 +14,23 @@ export const Update = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const token = localStorage.getItem("token");
-  const { dispatch } = useContext(Context);
+  const { state, dispatch } = useContext(Context);
   const conferencia = useConfereSenha(newPass);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    dispatch({
+      type: "LOADING",
+    });
     if (!name && !newPass && !oldPass) {
       setError("Preencha todos os campos");
       let timer = setTimeout(() => {
         setError("");
         clearTimeout(timer);
       }, 3000);
+      dispatch({
+        type: "LOADING",
+      });
       return;
     }
     try {
@@ -35,6 +41,9 @@ export const Update = () => {
           setError("");
           clearTimeout(timer);
         }, 3000);
+        dispatch({
+          type: "LOADING",
+        });
         return;
       }
       let { json } = await Api.put("/user", {
@@ -54,6 +63,9 @@ export const Update = () => {
           setError("");
           clearTimeout(timer);
         }, 3000);
+        dispatch({
+          type: "LOADING",
+        });
         return;
       }
       setName("");
@@ -68,6 +80,9 @@ export const Update = () => {
         type: "LOGOUT",
       });
     } catch (err) {
+      dispatch({
+        type: "LOADING",
+      });
       setError("Ocorreu algum erro");
       let timer = setTimeout(() => {
         setError("");
@@ -139,7 +154,11 @@ export const Update = () => {
             placeholder="Escreva a senha atual"
           />
         </label>
-        <Button>Enviar</Button>
+        {state.isLoading ? (
+          <Button className="loading">Enviando</Button>
+        ) : (
+          <Button>Enviar</Button>
+        )}
       </form>
     </UpdateContainer>
   );

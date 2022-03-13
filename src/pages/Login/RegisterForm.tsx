@@ -10,7 +10,7 @@ export const RegisterForm = () => {
   const [name, setName] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  const { dispatch } = useContext(Context);
+  const { state, dispatch } = useContext(Context);
   const conferencia = useConfereSenha(password);
   const handlePassChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -102,7 +102,11 @@ export const RegisterForm = () => {
             </>
           )}
         </label>
-        <button>Registrar</button>
+        {state.isLoading ? (
+          <button className="loading">Carregando</button>
+        ) : (
+          <button>Registrar</button>
+        )}
       </Form>
       <br />
       <Link to="../">Voltar para Login</Link>
