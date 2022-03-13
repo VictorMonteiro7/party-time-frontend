@@ -21,7 +21,7 @@ export const ThemeButton = styled.button<Props>`
   }
   &:after {
     content: "";
-    border: 1px solid var(--bg);
+    border: 1px solid var(--text);
     width: 30px;
     height: 30px;
     background: ${({ isLight }) => (isLight ? "var(--white)" : "var(--black)")};
