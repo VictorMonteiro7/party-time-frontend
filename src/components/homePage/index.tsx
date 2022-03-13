@@ -50,9 +50,7 @@ export const HomePage = () => {
             let date = new Date(item.date).toLocaleDateString("pt-BR");
             return (
               <div key={item._id}>
-                <Imagem
-                  src={`http://localhost:4000/assets/media/${item.photos[0]}`}
-                />
+                <Imagem src={item.photos[0]} />
                 <h1>{item.title}</h1>
                 <h3>{item.description}</h3>
                 <p>{date}</p>
