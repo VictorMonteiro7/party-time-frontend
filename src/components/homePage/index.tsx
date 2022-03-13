@@ -11,6 +11,7 @@ export const HomePage = () => {
   const [dataApi, setDataApi] = useState<PartyUserTypes>();
   let parties: PartyTypes[] = [];
   let endpoint = state.isLogged ? "/user/parties" : "/parties";
+  let [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     apiGet();
@@ -18,14 +19,20 @@ export const HomePage = () => {
   }, [state.isLogged]);
 
   async function apiGet() {
-    const { json } = await Api.get(endpoint, token && token);
-    if (json.message) return null;
-    if (state.isLogged) {
-      setDataApi(json);
-    } else {
-      setDataApi({
-        parties: json,
-      });
+    setIsLoading(true);
+    try {
+      const { json } = await Api.get(endpoint, token && token);
+      if (json.message) return null;
+      if (state.isLogged) {
+        setDataApi(json);
+      } else {
+        setDataApi({
+          parties: json,
+        });
+      }
+    } catch (err) {
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -42,6 +49,7 @@ export const HomePage = () => {
     }
   })();
 
+  if (isLoading) return <h1 className="leftIn">Carregando...</h1>;
   return (
     <MainGrid className="leftIn">
       {parties.length > 0 && (

@@ -77,4 +77,12 @@ export default createGlobalStyle`
       transform: translateX(0)
     }
   }
+  @media (max-width: 768px) {
+    :root{
+      --max-width: 300px;
+    }
+    html{
+      font-size: 75%;
+    }
+  }
 `;
