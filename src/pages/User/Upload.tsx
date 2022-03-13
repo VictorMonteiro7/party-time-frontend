@@ -36,12 +36,13 @@ export const Upload = () => {
       formData.append("date", data);
       formData.append("private", privado.toString());
 
-      await Api.post("/party", {
+      let { json } = await Api.post("/party", {
         headers: {
           Authorization: `${token}`,
         },
         body: formData,
       });
+      if (json.error) return setError(json.error);
       setTitulo("");
       setDescricao("");
       setData("");
