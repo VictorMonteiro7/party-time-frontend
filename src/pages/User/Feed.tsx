@@ -29,9 +29,7 @@ export const Feed = () => {
           let data = new Date(festa.date).toLocaleDateString("pt-BR");
           return (
             <Link key={festa._id} to={`/party/${festa._id}`}>
-              <Imagem
-                src={`http://localhost:4000/assets/media/${festa.photos[0]}`}
-              />
+              <Imagem src={festa.photos[0]} />
               <h2>{festa.title}</h2>
               <h3>{festa.description}</h3>
               <p>{data}</p>
