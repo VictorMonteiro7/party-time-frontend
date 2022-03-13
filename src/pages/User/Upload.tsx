@@ -16,7 +16,7 @@ export const Upload = () => {
   const [success, setSuccess] = useState("");
   const token = localStorage.getItem("token");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!titulo || !descricao || !data || !url) {
       setError("Preencha todos os campos");
@@ -36,7 +36,7 @@ export const Upload = () => {
       formData.append("date", data);
       formData.append("private", privado.toString());
 
-      Api.post("/party", {
+      await Api.post("/party", {
         headers: {
           Authorization: `${token}`,
         },
