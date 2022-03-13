@@ -6,7 +6,6 @@ import { Upload } from "./Upload";
 export const UserRoutes = () => {
   return useRoutes([
     { path: "/", element: <Feed /> },
-    { path: "/feed", element: <Feed /> },
     { path: "/upload", element: <Upload /> },
     { path: "/update", element: <Update /> },
   ]);

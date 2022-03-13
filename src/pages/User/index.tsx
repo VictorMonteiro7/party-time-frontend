@@ -75,7 +75,7 @@ export const User = () => {
           <p>Update</p>
           <Update />
         </NavLink>
-        <NavLink to="feed">
+        <NavLink to="./">
           <p>Feed</p>
           <Feed />
         </NavLink>
