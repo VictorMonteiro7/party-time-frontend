@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ErrorMsg } from "../../components/Error/Style";
 import { Form } from "../../components/Form";
+import { Context } from "../../context";
 export const LoginForm = () => {
+  const { state } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   let token = localStorage.getItem("token");
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const handlePassChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
@@ -76,10 +77,8 @@ export const LoginForm = () => {
               onChange={handlePassChange}
             />
           </label>
-          {isLoading ? (
-            <button style={{ color: "var(--white)", cursor: "progress" }}>
-              Carregando
-            </button>
+          {state.isLoading ? (
+            <button className="loading">Carregando</button>
           ) : (
             <button style={{ color: "var(--white)" }}>Entrar</button>
           )}

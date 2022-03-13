@@ -20,8 +20,16 @@ export const Form = (props: FormType) => {
   const { dispatch } = useContext(Context);
   async function handleSubmit(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
+    dispatch({
+      type: "LOADING",
+    });
     const validaEmail = validator.isEmail(props.data.body.email);
-    if (!validaEmail) return alert("Digite um email válido");
+    if (!validaEmail) {
+      dispatch({
+        type: "LOADING",
+      });
+      return alert("Digite um email válido");
+    }
     let resposta;
     if (props.data.body.name) {
       resposta = await fazerLogin({
@@ -39,6 +47,9 @@ export const Form = (props: FormType) => {
         },
       });
     }
+    dispatch({
+      type: "LOADING",
+    });
     if (resposta.r.status === 400)
       return props.handleFuncao && props.handleFuncao(resposta.json);
     localStorage.setItem("token", `Bearer ${resposta.json.token}`);

@@ -51,6 +51,13 @@ export default createGlobalStyle`
     }
   }
 
+  .loading{
+    color: var(--white) !important;
+    cursor: progress !important;
+    filter: brightness(.8) !important;
+    pointer-events: none !important;
+  }
+
   .leftIn{
     animation: leftIn 0.5s forwards;
   }

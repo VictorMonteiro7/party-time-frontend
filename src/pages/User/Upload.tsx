@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Api } from "../../api";
 import { Button } from "../../components/Button";
 import { ErrorMsg, SuccessMsg } from "../../components/Error/Style";
 import { Imagem } from "../../components/Imagem";
+import { Context } from "../../context";
 import { UploadContainer } from "./Style";
 
 export const Upload = () => {
@@ -15,15 +16,21 @@ export const Upload = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const token = localStorage.getItem("token");
-
+  const { state, dispatch } = useContext(Context);
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    dispatch({
+      type: "LOADING",
+    });
     if (!titulo || !descricao || !data || !url) {
       setError("Preencha todos os campos");
       let timer = setTimeout(() => {
         setError("");
         clearTimeout(timer);
       }, 3000);
+      dispatch({
+        type: "LOADING",
+      });
       return;
     }
     try {
@@ -48,6 +55,9 @@ export const Upload = () => {
           setError("");
           clearTimeout(timer);
         }, 3000);
+        dispatch({
+          type: "LOADING",
+        });
         return;
       }
       setTitulo("");
@@ -61,12 +71,18 @@ export const Upload = () => {
         setSuccess("");
         clearTimeout(timer);
       }, 3000);
+      dispatch({
+        type: "LOADING",
+      });
     } catch (err) {
       setError("Ocorreu algum erro");
       let timer = setTimeout(() => {
         setError("");
         clearTimeout(timer);
       }, 3000);
+      dispatch({
+        type: "LOADING",
+      });
     }
   }
   function handleTituloChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -154,7 +170,11 @@ export const Upload = () => {
             type="file"
           />
         </label>
-        <Button>Enviar</Button>
+        {state.isLoading ? (
+          <Button className="loading">Enviando</Button>
+        ) : (
+          <Button>Enviar</Button>
+        )}
       </form>
       <div>
         <h3>Veja a prévia de uma imagem</h3>
