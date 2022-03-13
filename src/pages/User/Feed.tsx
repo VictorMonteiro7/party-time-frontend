@@ -30,7 +30,12 @@ export const Feed = () => {
       setLoading(false);
     }
   }
-  if (loading) return <Loading />;
+  if (loading)
+    return (
+      <div className="content">
+        <Loading />
+      </div>
+    );
   return (
     <>
       {temFestas.length > 0 && (
