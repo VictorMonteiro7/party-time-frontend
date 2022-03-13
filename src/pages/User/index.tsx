@@ -8,6 +8,7 @@ import { ReactComponent as Upload } from "../../img/upload.svg";
 import { ReactComponent as Update } from "../../img/update.svg";
 import { ReactComponent as Feed } from "../../img/feed.svg";
 import { UserRoutes } from "./UserRoutes";
+import { Loading } from "../../components/Loading";
 
 type UserType = {
   name: string;
@@ -55,7 +56,12 @@ export const User = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (isLoading) return <h1 className="leftIn">Carregando...</h1>;
+  if (isLoading)
+    return (
+      <div className="content">
+        <Loading />
+      </div>
+    );
   return (
     <UserContainer className="content ">
       {dados && <h1>Seja bem vindo, {dados.name}!</h1>}
@@ -69,8 +75,8 @@ export const User = () => {
           <p>Update</p>
           <Update />
         </NavLink>
-        <NavLink to="feed">
-          <p>Feed</p>
+        <NavLink to="./">
+          <p>Feed Pessoal</p>
           <Feed />
         </NavLink>
       </IconsContainer>

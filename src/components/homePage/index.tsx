@@ -3,6 +3,7 @@ import { Api } from "../../api";
 import { Context } from "../../context";
 import { PartyTypes, PartyUserTypes } from "../../types";
 import { Imagem } from "../Imagem";
+import { Loading } from "../Loading";
 import { MainGrid } from "./Style";
 
 export const HomePage = () => {
@@ -49,7 +50,7 @@ export const HomePage = () => {
     }
   })();
 
-  if (isLoading) return <h1 className="leftIn">Carregando...</h1>;
+  if (isLoading) return <Loading />;
   return (
     <MainGrid className="leftIn">
       {parties.length > 0 && (

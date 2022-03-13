@@ -23,6 +23,18 @@ export const Api = {
       json,
     };
   },
+  put: async (endpoint: string, data: any) => {
+    const r = await fetch(`${BASE_URL}${endpoint}`, {
+      method: "PUT",
+      headers: data.headers,
+      body: data.body,
+    });
+    const json = await r.json();
+    return {
+      r,
+      json,
+    };
+  },
   // put: async (endpoint: string, data: any) =>
   //   await instance.put(endpoint, data),
   // delete: async (endpoint: string) => await instance.delete(endpoint),

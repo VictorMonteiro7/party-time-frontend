@@ -12,6 +12,7 @@ export const ErrorMsg = styled.button`
   border: none;
   border-radius: 5px;
   pointer-select: none;
+  z-index: 999;
 `;
 
 export const SuccessMsg = styled(ErrorMsg)`

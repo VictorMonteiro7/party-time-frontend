@@ -21,6 +21,7 @@ export const isLogged = (state: InitialLoggedType, action: ReducerType) => {
       return true;
       break;
     case "LOGOUT":
+      localStorage.removeItem("token");
       return false;
       break;
   }
