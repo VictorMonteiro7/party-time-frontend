@@ -1,4 +1,4 @@
-![Forks](https://img.shields.io/github/forks/VictorMonteiro7/party-time-frontend)![Stars](https://img.shields.io/github/stars/VictorMonteiro7/party-time-frontend)![Issues](https://img.shields.io/github/issues/VictorMonteiro7/party-time-frontend)
+![Forks](https://img.shields.io/github/forks/VictorMonteiro7/party-time-frontend) ![Stars](https://img.shields.io/github/stars/VictorMonteiro7/party-time-frontend) ![Issues](https://img.shields.io/github/issues/VictorMonteiro7/party-time-frontend)
 
 # Projeto Party-Time
 
