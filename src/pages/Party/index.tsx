@@ -11,6 +11,7 @@ import { PartyGrid } from "./Style";
 export const Party = () => {
   const { id } = useParams();
   const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
   const { state, dispatch } = useContext(Context);
   const [dados, setDados] = useState<PartyTypes>();
   const [error, setError] = useState<string>();
@@ -111,26 +112,28 @@ export const Party = () => {
           O evento foi uma {dados.privacy ? "festa privada" : "festa pública"}
         </p>
         <p>Realizada em {dadosData}</p>
-        <fieldset>
-          <legend>Deseja apagar a festa?</legend>
-          <label htmlFor="password">
-            <input
-              id="password"
-              type="password"
-              placeholder="Digite a sua senha"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {error && <p>{error}</p>}
-          </label>
-          <Button
-            className={`${state.isLoading && "loading"}`}
-            onClick={handleSubmit}
-            style={{ backgroundColor: "red" }}
-          >
-            {state.isLoading ? "Carregando..." : "Deletar postagem"}
-          </Button>
-        </fieldset>
+        {userId && userId === dados.userId && (
+          <fieldset>
+            <legend>Deseja apagar a festa?</legend>
+            <label htmlFor="password">
+              <input
+                id="password"
+                type="password"
+                placeholder="Digite a sua senha"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {error && <p>{error}</p>}
+            </label>
+            <Button
+              className={`${state.isLoading && "loading"}`}
+              onClick={handleSubmit}
+              style={{ backgroundColor: "red" }}
+            >
+              {state.isLoading ? "Carregando..." : "Deletar postagem"}
+            </Button>
+          </fieldset>
+        )}
       </div>
     </PartyGrid>
   );

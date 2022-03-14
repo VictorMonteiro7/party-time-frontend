@@ -43,8 +43,8 @@ export const User = () => {
           navigate("/");
         }
         setDados(res);
+        localStorage.setItem("userId", res._id);
       } catch (err) {
-        localStorage.removeItem("token");
         dispatch({
           type: "LOGOUT",
         });
