@@ -7,7 +7,7 @@ export default createGlobalStyle`
     padding: 0;
     margin: 0;
     -webkit-font-smoothing: antialiased;
-    word-break: break-all;
+    word-break: break-word;
   }
   :root{
     --bg: ${({ theme }: ThemeType) => theme && theme.background};

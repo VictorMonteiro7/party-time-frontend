@@ -35,7 +35,13 @@ export const Api = {
       json,
     };
   },
-  // put: async (endpoint: string, data: any) =>
-  //   await instance.put(endpoint, data),
-  // delete: async (endpoint: string) => await instance.delete(endpoint),
+  delete: async (endpoint: string, dados: any) => {
+    const r = await fetch(`${BASE_URL}${endpoint}`, {
+      method: "DELETE",
+      headers: dados.headers,
+      body: dados.body,
+    });
+    const json = await r.json();
+    return { r, json };
+  },
 };
