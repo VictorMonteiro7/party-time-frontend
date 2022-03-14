@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Api } from "../../api";
 import { Context } from "../../context";
 import { PartyTypes, PartyUserTypes } from "../../types";
@@ -58,12 +59,12 @@ export const HomePage = () => {
           {parties.map((item) => {
             let date = new Date(item.date).toLocaleDateString("pt-BR");
             return (
-              <div key={item._id}>
+              <Link to={`/party/${item._id}`} key={item._id}>
                 <Imagem src={item.photos[0]} />
                 <h2>{item.title}</h2>
                 <h3>{item.description}</h3>
                 <p>{date}</p>
-              </div>
+              </Link>
             );
           })}
         </>
