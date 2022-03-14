@@ -41,7 +41,7 @@ export const Upload = () => {
       formData.append("title", titulo);
       formData.append("description", descricao);
       formData.append("date", data);
-      formData.append("private", privado.toString());
+      formData.append("privacy", privado.toString());
 
       let { json } = await Api.post("/party", {
         headers: {
