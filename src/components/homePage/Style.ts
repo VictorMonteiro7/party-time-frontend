@@ -5,7 +5,7 @@ export const MainGrid = styled.main`
   grid-template-columns: repeat(2, 1fr);
   gap: 50px 20px;
   padding: 50px 0;
-  justify-content: center;
+  justify-items: center;
   & > div {
     width: 100%;
     display: flex;
