@@ -29,7 +29,7 @@ export const Upload = () => {
         clearTimeout(timer);
       }, 3000);
       dispatch({
-        type: "LOADING",
+        type: "LOADED",
       });
       return;
     }
@@ -56,7 +56,7 @@ export const Upload = () => {
           clearTimeout(timer);
         }, 3000);
         dispatch({
-          type: "LOADING",
+          type: "LOADED",
         });
         return;
       }
@@ -72,7 +72,7 @@ export const Upload = () => {
         clearTimeout(timer);
       }, 3000);
       dispatch({
-        type: "LOADING",
+        type: "LOADED",
       });
     } catch (err) {
       setError("Ocorreu algum erro");
@@ -81,7 +81,7 @@ export const Upload = () => {
         clearTimeout(timer);
       }, 3000);
       dispatch({
-        type: "LOADING",
+        type: "LOADED",
       });
     }
   }

@@ -26,7 +26,7 @@ export const Form = (props: FormType) => {
     const validaEmail = validator.isEmail(props.data.body.email);
     if (!validaEmail) {
       dispatch({
-        type: "LOADING",
+        type: "LOADED",
       });
       return alert("Digite um email válido");
     }
@@ -48,10 +48,13 @@ export const Form = (props: FormType) => {
       });
     }
     dispatch({
-      type: "LOADING",
+      type: "LOADED",
     });
     if (resposta.r.status === 400)
       return props.handleFuncao && props.handleFuncao(resposta.json);
+    dispatch({
+      type: "LOADED",
+    });
     localStorage.setItem("token", `Bearer ${resposta.json.token}`);
     dispatch({
       type: "LOGIN",

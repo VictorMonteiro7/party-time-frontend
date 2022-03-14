@@ -29,7 +29,7 @@ export const Update = () => {
         clearTimeout(timer);
       }, 3000);
       dispatch({
-        type: "LOADING",
+        type: "LOADED",
       });
       return;
     }
@@ -42,7 +42,7 @@ export const Update = () => {
           clearTimeout(timer);
         }, 3000);
         dispatch({
-          type: "LOADING",
+          type: "LOADED",
         });
         return;
       }
@@ -64,7 +64,7 @@ export const Update = () => {
           clearTimeout(timer);
         }, 3000);
         dispatch({
-          type: "LOADING",
+          type: "LOADED",
         });
         return;
       }
@@ -81,7 +81,7 @@ export const Update = () => {
       });
     } catch (err) {
       dispatch({
-        type: "LOADING",
+        type: "LOADED",
       });
       setError("Ocorreu algum erro");
       let timer = setTimeout(() => {

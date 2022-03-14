@@ -38,7 +38,7 @@ export const Party = () => {
       console.log(err);
     } finally {
       dispatch({
-        type: "LOADING",
+        type: "LOADED",
       });
     }
   };
@@ -64,13 +64,13 @@ export const Party = () => {
       });
       if (json.error) return setError(json.error);
       dispatch({
-        type: "LOADING",
+        type: "LOADED",
       });
       navigate("/");
     } catch (err) {
     } finally {
       dispatch({
-        type: "LOADING",
+        type: "LOADED",
       });
     }
   };

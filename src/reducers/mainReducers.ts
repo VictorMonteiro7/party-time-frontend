@@ -33,7 +33,10 @@ export const isLogged = (state: InitialLoggedType, action: ReducerType) => {
 export const isLoading = (state: InitialLoggedType, action: ReducerType) => {
   switch (action.type) {
     case "LOADING":
-      return !state;
+      return true;
+      break;
+    case "LOADED":
+      return false;
       break;
   }
   return state;
