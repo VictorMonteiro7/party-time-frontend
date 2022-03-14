@@ -1,3 +1,5 @@
+![Forks](https://img.shields.io/github/forks/VictorMonteiro7/party-time-frontend)![Stars](https://img.shields.io/github/stars/VictorMonteiro7/party-time-frontend)![Issues](https://img.shields.io/github/issues/VictorMonteiro7/party-time-frontend)
+
 # Projeto Party-Time
 
 Cadastre as suas festas (públicas ou privadas).
@@ -77,3 +79,7 @@ Fiquem à vontade para dar um Fork no projeto, ou, me ajudar a melhorá-lo.
 ---
 
 **[Victor Monteiro](https://github.com/VictorMonteiro7)**
+
+##### Licença
+
+![MIT](https://img.shields.io/github/license/VictorMonteiro7/party-time-frontend)
