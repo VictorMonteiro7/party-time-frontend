@@ -2,7 +2,11 @@
 
 Cadastre as suas festas (públicas ou privadas).
 
-## Para instalar na sua máquina:
+# Descrição
+
+Projeto feito para treinamento, e você pode ver o funcionamento completo aqui -> [Party-Time](https://party-time-frontend.vercel.app/)
+
+# Para instalar na sua máquina:
 
 ### Clone o projeto
 
@@ -61,3 +65,15 @@ npm start
 **Caso o usuário seja dono da festa**
 
 - [x] Fieldset para poder apagar a festa.
+
+## Agradecimentos
+
+Agradeço ao curso de [MongoDB](https://www.udemy.com/course/mongodb-do-basico-ao-avancado-c-mongoose-e-projetos/) do [Matheus Battisti](https://www.linkedin.com/in/matheusbattisti/), ao curso de Node da [B7Web](https://b7web.com.br/fullstack/), ao curso de Frontend da [Origamid](http://origamid.com/), e também a todos vocês que vieram até aqui para dar uma olhada ao projeto (vocês deixariam esse dev muito feliz ao dar uma estrelinha nos dois projetos =D).
+
+---
+
+Fiquem à vontade para dar um Fork no projeto, ou, me ajudar a melhorá-lo.
+
+---
+
+**[Victor Monteiro](https://github.com/VictorMonteiro7)**
