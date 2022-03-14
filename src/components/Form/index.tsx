@@ -35,14 +35,14 @@ export const Form = (props: FormType) => {
       resposta = await fazerLogin({
         body: {
           name: props.data.body.name,
-          email: props.data.body.email,
+          email: props.data.body.email.toLowerCase(),
           password: props.data.body.password,
         },
       });
     } else {
       resposta = await fazerLogin({
         body: {
-          email: props.data.body.email,
+          email: props.data.body.email.toLowerCase(),
           password: props.data.body.password,
         },
       });
