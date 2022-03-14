@@ -60,7 +60,7 @@ export const HomePage = () => {
             return (
               <div key={item._id}>
                 <Imagem src={item.photos[0]} />
-                <h1>{item.title}</h1>
+                <h2>{item.title}</h2>
                 <h3>{item.description}</h3>
                 <p>{date}</p>
               </div>

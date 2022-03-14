@@ -12,11 +12,13 @@ export const MainGrid = styled.main`
     flex-direction: column;
     align-items: center;
     row-gap: 5px;
-    & > h1 {
-      text-align: left;
+    @media (max-width: 768px) {
+      & > :is(h2, h3, p) {
+        place-self: flex-start;
+      }
     }
-    & > p {
-      text-align: left;
+    & > h3 {
+      font-weight: 500;
     }
   }
 `;
