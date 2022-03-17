@@ -22,7 +22,7 @@ git clone https://github.com/VictorMonteiro7/party-time-frontend
 npm install
 ```
 
-### Adicione um arquivo _.dev_ na pasta raíz do projeto, e coloque o link do servidor:
+### Adicione um arquivo _.env_ na pasta raíz do projeto, e coloque o link do servidor:
 
 `REACT_APP_API_URL:http://localhost:5000`
 
